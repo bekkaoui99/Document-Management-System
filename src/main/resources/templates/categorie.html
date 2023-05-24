@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script  src="webjars/bootstrap/4.1.3/js/bootstrap.bundle.js" ></script>
+    <title>categorie</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <div class="container mt-5">
+
+    <div class="card mb-5">
+        <div class="card-header bg-info text-white">
+            <h2 class="align-content-center"> list of categorie </h2>
+        </div>
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-content-center mt-1 mb-2">
+                <div>
+                    <a class="btn btn-outline-info" th:href="@{createCategorie}">create</a>
+                </div>
+                <form class="form-inline my-2 my-lg-0" method="get" th:action="@{categories}">
+
+                    <input class="form-control mr-sm-2" name="titre" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">research</button>
+
+                </form>
+            </div>
+
+        <table class="table">
+
+            <tr>
+
+                <th>id</th>
+                <th>titre</th>
+                <th>description</th>
+                <th>action</th>
+
+
+            </tr>
+
+            <tr th:each="Categorie:${allCategorie}">
+
+                <td th:text="${Categorie.id}"></td>
+                <td th:text="${Categorie.titre}"></td>
+                <td th:text="${Categorie.description}"></td>
+                <td >
+                    <a class="btn btn-outline-success" th:href="@{updateCategorie(id=${Categorie.id})}">update</a>
+                    <a class="btn btn-outline-danger" th:href="@{deleteCategorie(id=${Categorie.id})}">detele</a>
+                </td>
+
+            </tr>
+
+        </table>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link"   th:href="@{categories(page=${curentPage==last?last:curentPage - 1 })}">Previous</a>
+                    </li>
+
+                    <li class="page-item ml-1 mr-1"  th:each="curentPage , status:${pages}" th:if="${status.index <= 5}" >
+                        <a th:class="${status.index == curentPage ?'btn btn-info':'btn btn-outline-info'}" th:text="${status.index}"  class="page-link"  th:href="@{categories(page=${status.index})}"></a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{categories(page=${curentPage <= totalPages? curentPage + 1  : totalPages } ) }" > Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+
+        </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+
+</html>

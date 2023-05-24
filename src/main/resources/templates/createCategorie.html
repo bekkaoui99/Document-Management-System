@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <script  src="webjars/bootstrap/4.1.3/js/bootstrap.bundle.js"></script>
+    <title>Categorie</title>
+</head>
+<body>
+
+
+
+<div layout:fragment="content">
+
+    <div class="col-6 offset-3 mt-5 p-5">
+        <div class="card">
+
+            <div class="card-header bg-info text-white d-flex justify-content-center align-content-center">
+                <h2>create a new categorie</h2>
+            </div>
+
+            <div class="card-body">
+
+                <form method="post" th:action="@{saveCategorie}" >
+
+                    <div class="form-group">
+                        <label for="titre">titre</label>
+                        <input th:value="${categorieDto.titre}" name="titre" th:name="titre" type="text" class="form-control" id="titre"  placeholder="your titre">
+                     </div>
+
+
+                    <div class="form-group">
+                        <label for="desc">description</label>
+                        <input th:value="${categorieDto.description}" name="description" th:name="description" type="text" class="form-control" id="desc" placeholder="your description">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

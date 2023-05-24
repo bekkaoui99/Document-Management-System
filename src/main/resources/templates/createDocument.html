@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+
+
+    <script  src="webjars/bootstrap/4.1.3/js/bootstrap.bundle.js"></script>
+    <title>document</title>
+</head>
+<body>
+
+
+
+<div layout:fragment="content">
+
+    <div class="col-6 offset-3 mt-5 p-5">
+        <div class="card">
+
+            <div class="card-header bg-info text-white d-flex justify-content-center align-content-center">
+                <h2>create a new Document</h2>
+            </div>
+
+            <div class="card-body">
+                <form  method="post" th:action="@{saveDocument}" >
+
+                    <div class="form-group">
+                        <label for="firstName">titre</label>
+                        <input th:value="${documentDto.titre}" name="titre" th:name="titre" type="text" class="form-control" id="firstName"  placeholder="write your first name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">langue</label>
+                        <input th:value="${documentDto.langue}" name="langue" th:name="langue" type="text" class="form-control" id="lastName" placeholder="write your last name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">resume</label>
+                        <input  th:value="${documentDto.resume}" name="resume" th:name="resume"  type="text" class="form-control" id="desc" placeholder="write your description">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="picture">picture</label>
+                        <input  th:value="${documentDto.picture}" name="picture" th:name="picture" type="file" class="form-control-file" id="picture">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">file PDF</label>
+                        <input  th:value="${documentDto.file}" name="file" th:name="file" type="file" class="form-control-file" id="file">
+                    </div>
+
+                    <select class="form-control form-control-lg mb-3">
+                        <option>Authors</option>
+                        <option ></option>
+                    </select>
+
+                    <select class="form-control form-control-lg mb-3">
+                        <option>Cateories</option>
+                        <option  ></option>
+                    </select>
+
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
